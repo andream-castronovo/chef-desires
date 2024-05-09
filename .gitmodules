@@ -1,0 +1,3 @@
+[submodule "chef-desires-recipes"]
+	path = chef-desires-recipes
+	url = https://github.com/andream-castronovo/chef-desires-recipes
