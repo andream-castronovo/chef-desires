@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  gateway:
+    build:
+      dockerfile: infrastructure/dev/dockerfiles/std.node.Dockerfile
+      context: ../..
+      args:
+        SERVICE_PATH: ./gateway
+    volumes:
+      - ../../gateway:/usr/src/server
+    ports:
+      - '3000:3000'
+    networks:
+      - recipes
+
+  recipes:
+    build:
+      dockerfile: infrastructure/dev/dockerfiles/std.node.Dockerfile
+      context: ../..
+      args:
+        SERVICE_PATH: ./backend/recipes
+    volumes:
+      - ../../backend/recipes:/usr/src/server
+    networks:
+      - recipes
+      - sql_server
+  
+  sql_server:
+    image: mcr.microsoft.com/mssql/server
+    container_name: sql_server_container
+    restart: always
+    env_file:
+      - dev.env
+    ports:
+      - "5533:1433"
+    networks:
+      - sql_server
+
+networks:
+  recipes:
+  sql_server:
