@@ -4,3 +4,6 @@
 [submodule "chef-desires-gateway"]
 	path = chef-desires-gateway
 	url = https://github.com/andream-castronovo/chef-desires-gateway
+[submodule "chef-desires-frontend"]
+	path = chef-desires-frontend
+	url = https://github.com/StrawberryDabAScuola/chef-desires-frontend
