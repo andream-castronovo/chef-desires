@@ -3,9 +3,8 @@ version: '3'
 services:
   gateway:
     build:
-      context: ../..
-      dockerfile: infrastructure/dev/dockerfiles/std.node.Dockerfile
       context: ../.. # Di solito i Dockerfile si mettono nella root, avendone più di uno però (dev e prod) per ordine facciamo un'altra cartella. Dobbiamo dunque cambiare il contesto salendo di due cartelle.
+      dockerfile: infrastructure/dev/dockerfiles/std.node.Dockerfile
       args:
         SERVICE_PATH: ./chef-desires-gateway
     volumes:
