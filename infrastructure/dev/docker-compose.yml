@@ -25,6 +25,8 @@ services:
     networks:
       - recipes
       - sql_server
+    ports:
+      - '3001:3000'
   
   sql_server:
     image: mcr.microsoft.com/mssql/server
@@ -37,11 +39,8 @@ services:
     networks:
       - sql_server
     volumes:
-      - db-data:/vol
+      - "./data:/var/opt/mssql/data"
 
 networks:
   recipes:
   sql_server:
-
-volumes:
-  db-data:

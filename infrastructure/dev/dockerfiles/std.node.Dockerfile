@@ -34,4 +34,4 @@ EXPOSE 3000
 # CMD, a differenza di RUN, è quello che dice esattamente come avviare la nostra applicazione
 # RUN invece fa una sessione di shell in cui fa i comandi, CMD è invece resposanbile di avviare 
 # la nostra app.
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "start" ]
