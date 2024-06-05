@@ -1,9 +1,12 @@
 [submodule "chef-desires-recipes"]
 	path = chef-desires-recipes
 	url = https://github.com/andream-castronovo/chef-desires-recipes
+	update = rebase
 [submodule "chef-desires-gateway"]
 	path = chef-desires-gateway
 	url = https://github.com/andream-castronovo/chef-desires-gateway
+	update = rebase
 [submodule "chef-desires-frontend"]
 	path = chef-desires-frontend
 	url = https://github.com/StrawberryDabAScuola/chef-desires-frontend
+	update = rebase
