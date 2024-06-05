@@ -1,6 +1,20 @@
 version: '3'
 
 services:
+  sql_server:
+    image: mcr.microsoft.com/mssql/server
+    container_name: sql_server_container
+    restart: always
+    env_file:
+      - dev.env
+    ports:
+      - "5533:1433"
+    networks:
+      - sql_server
+    volumes:
+      - "./data:/var/opt/mssql/data:Z"
+    user: root
+
   gateway:
     build:
       context: ../.. # Di solito i Dockerfile si mettono nella root, avendone più di uno però (dev e prod) per ordine facciamo un'altra cartella. Dobbiamo dunque cambiare il contesto salendo di due cartelle.
@@ -28,18 +42,20 @@ services:
     ports:
       - '3001:3000'
   
-  sql_server:
-    image: mcr.microsoft.com/mssql/server
-    container_name: sql_server_container
-    restart: always
-    env_file:
-      - dev.env
-    ports:
-      - "5533:1433"
-    networks:
-      - sql_server
+  frontend:
+    build:
+      context: ../..
+      dockerfile: infrastructure/dev/dockerfiles/angular.node.Dockerfile
+      args:
+        SERVICE_PATH: ./chef-desires-frontend
     volumes:
-      - "./data:/var/opt/mssql/data"
+      - "../../chef-desires-frontend:/usr/src/server"
+    networks:
+      - recipes
+    ports:
+      - '4200:4200'
+
+  
 
 networks:
   recipes:
